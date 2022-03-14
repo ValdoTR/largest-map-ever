@@ -10,41 +10,41 @@ This includes:
 
 ## Logs
  
-### Test #1: 100,000x100,000 tiles
+### Test #1: 100.000x100.000 tiles
 
-So I started by saying to myself: let's create a map of 100,000x100,000 tiles.
+So I started by saying to myself: let's create a map of 100.000x100.000 tiles.
 
-In Tiled I therefore enter 100,000 til... wait, it's limited to 5 characters. This was fast.
+In Tiled I therefore enter 100.000 til... wait, it's limited to 5 characters. This was fast.
 
-### Test #2: 99,999x99,999 tiles
+### Test #2: 99.999x99.999 tiles
 
-Ok so let's try 99,999x99,999.
+Ok so let's try 99.999x99.999.
 
 I entered that and I validated, the grid appeared (we do not discern that it's a grid, it's more a mixture of black lines ^^).
 Quite surprised by the fact that Tiled was still standing and by the fluidity of the zoom in the grid, I thought to myself "ok let's add some ground and save it all".
 I saved, I waited, 15 seconds later. Bye bye birdy. Tiled was gone. We're going to have to be nicer to him...
 
-### Test #3: 9,999x9,999 tiles
+### Test #3: 9.999x9.999 tiles
 
 I restarted Tiled, I entered 9,999 in horizontal and vertical, I saved, I waited ... BOOM Tiled is KO again.
 
 Okay from now on, let's proceed by dichotomy.
 
-### Test #4: 5,000x5,000 tiles
+### Test #4: 5.000x5.000 tiles
 
-I had high hopes for this 5,000. This time I looked at my RAM consumption and the same time I was saving.
+I had high hopes for this 5.000. This time I looked at my RAM consumption and the same time I was saving.
 No luck, another crash while my consumption was at 14GB (just by Tiled).
 
-Next: 2,500... Well I have less and less hope so let's say 2,000 to have better luck.
+Next: 2.500... Well I have less and less hope so let's say 2.000 to have better luck.
 
-### Test #5: 2,000x2,000 tiles
+### Test #5: 2.000x2.000 tiles
 
 Same story: I save, I wait ... and let's go! The file is saved after 10 seconds of long suspense!
 
 I could try to increase the dose but I really wanted to see the result in WorkAdventure.
 
-With 2k it makes already... 2,000 x 2,000 = 4,000,000 tiles. Wow. And I who wanted to try 100k...
-What I found impressive was how Tiled was rendering the painting of 4,000,000 tiles at once, quickly and without flinching! 
+With 2k it makes already... 2.000 x 2.000 = 4.000.000 tiles. Wow. And I who wanted to try 100k...
+What I found impressive was how Tiled was rendering the painting of 4.000.000 tiles at once, quickly and without flinching! 
 Here is a little souvenir:
 
 ![2k-map](./docs/2k-map.png)
@@ -67,7 +67,7 @@ It turned out that using LFS is not possible for us because of the extrude githu
 
 Conclusion, the file must be less than 100MB. So the plan is to cut the map in Tiled until we get our big winner.
 
-### Test #6: 1,600x1,600 tiles
+### Test #6: 1.600x1.600 tiles
 
 After 3-4 attempts, I arrive at a result of 1600x1600 tiles for a file that goes under the 100MB mark (~ 90MB).
 Before pushing one last time I take the design of the [starter kit](https://github.com/thecodingmachine/workadventure-map-starter-kit) repo (it's a small office) which I duplicate over the entire width and height of the map. This small setup contained 2 jitsi areas and enough furniture for my test.
@@ -90,11 +90,11 @@ So here we go: I push, the Github actions are now working, I wait a bit for Gith
 
 So now it's probably Phaser's turn to get in my way... the world is crap.
 
-### Test #7: 1200x1200 tiles
+### Test #7: 1.200x1.200 tiles
 
 Seven is my favorite number. It has to work.
 
-I had the feeling that the next step will work, so I used a different strategy: I started with a solution that I knew it will work, increasing the number until having the final word. So I started with 600x600, then 800x800, then 1200x1200 and finally 1400 crashed the same way as 1600.
+I had the feeling that the next step will work, so I used a different strategy: I started with a solution that I knew it will work, increasing the number until having the final word. So I started with 600x600, then 800x800, then 1.200x1.200 and finally 1.400 crashed the same way as 1.600.
 Let's analyse our map with 1200x1200 tiles:
 
 * Opening this file with Tiled consumes a negligible amount of RAM
@@ -108,7 +108,7 @@ Let's analyse our map with 1200x1200 tiles:
 We are not not finished yet. Now that the number of tiles is not an issue anymore, let's increase the number of layers!
 The current map has 12 layers.
 
-### Test #7.1: 1200x1200 tiles, 100 layers
+### Test #7.1: 1.200x1.200 tiles / 100 layers
 
 ## Config
 
