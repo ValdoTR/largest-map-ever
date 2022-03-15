@@ -7,6 +7,7 @@ This includes:
 * [Tiled](https://www.mapeditor.org/)
 * [GitHub](https://github.com/)
 * [Phaser](https://phaser.io/)
+* A web browser (I'm using Chrome)
 
 ## Logs
  
@@ -109,6 +110,50 @@ The current map has 12 layers.
 
 ### Test #7.1: 1200x1200 tiles / 100 layers
 
+I created a copy of one of my layers that I copied 82 times... to have my total of 100 layers.
+
+![copies](./docs/copies.png)
+
+When I saved Tiled was about to crash, I had to force wait for the program to save my work.
+I looked at the file size I saw 433 MB. Ok so already knew that I had to remove a bunch of layers to pass below 100 MB (LFS issue).
+But I ran the map anyway and I saw the SIGILL error. Too bad.
+
+### Test #7.1: 1200x1200 tiles / 22 layers
+
+I reduced the number of layers (each layer contains the walls for the whole map) by removing 50 of them. The file was way to big yet, so I kept removing, and removing... and with a total of 23 layers my file size was just under the 100 MB limit (99,9 MB).
+
+So I ran this map in WorkAdventure: still have the memory error code "SIGILL".
+
+### Test #7.2: 1200x1200 tiles / 14 layers
+
+Ok, this part is super interesting. I removed more copies of my walls until having a total of 14 layers (15 layers gave me the memory error crash).
+
+![3-copies](./docs/3-copies.png)
+
+With this quantity of memory to manage, Chrome stopped the execution of the Phaser code just before having to crash! Maybe he did that because I had the console open.
+
+![chrome-debug-phaser](./docs/chrome-debug-phaser.png)
+
+In the memory tab, I saw a heap snapshot of 3900 MB, so I assume we get the out-of-memory error when morethan 4 GB of data is allocated to the Chrome Javascript objects.
+
+Before removing one layer, I wanted to know if the memory allocation was the same with layers full of tiles and layers empty (or with just one tile). So i removed all my copies of walls and I created one layer with one tile, that I copied several times. The result is that having many tiles drawn on a layer or not is not impacting the performance of the game. Only the number of layers counts, alongside the number of tiles of course.
+
+> It's the number of tiles that counts, not the number of pixels. So if we had a grid of 16x16 tiles we had double the size of our map.
+
+Now I think we can see the size of a map this way, in a cuboid shape:
+
+![cuboid](./docs/cuboid.png)
+
+So to have an idea of the real number of tiles that Phaser must work with, we have to see them in 3D: `1200 x 1200 x 14 = 20,160,000` elements of 32x32 pixels.
+
+### Test #7.2: 1200x1200 tiles / 13 layers
+
+An update about the number of elements with 13 layers: `1200 x 1200 x 13 = 18,720,000` elements.
+
+This is working with Chrome. With Firefox I had to remove some layers to make it working. It worked with 11 layers but the FPS was quite unstable.
+
+I think that if we used a more opimized way of allocating the memory for each elements, we could have a way larger map.
+
 ## Config
 
 Tested with this PC config:
@@ -119,4 +164,4 @@ Tested with this PC config:
 
 ## Installation and licenses
 
-See https://github.com/thecodingmachine/workadventure-map-starter-kit
+See the repository of the template used to create this map: https://github.com/thecodingmachine/workadventure-map-starter-kit
