@@ -84,7 +84,7 @@ Little update to the stats:
 Now what I want to do is to add this damn stat:
 * It takes X minutes for the player to travel the entire map horizontally
 
-So here we go: I pushed, the GitHub actions are now working, I waited a bit for GitHub Pages to be OK, I opened the deployment, I clicedk on my [WorkAdventure link](https://play.workadventu.re/_/this-is/valdotr.github.io/largest-map-ever/map.json)! ... aaaand the winner is... SIGILL. Yep, that's his real name:
+So here we go: I pushed, the GitHub actions are now working, I waited a bit for GitHub Pages to be OK, I opened the deployments view, I clicedk on my [WorkAdventure link](https://play.workadventu.re/_/this-is/valdotr.github.io/largest-map-ever/map.json)! ... aaaand the winner is... SIGILL. Yep, that's his real name:
  
 ![SIGILL](./docs/SIGILL.png)
 
@@ -136,7 +136,7 @@ With this quantity of memory to manage, Chrome stopped the execution of the Phas
 
 In the memory tab, I saw a heap snapshot of 3900 MB, so I assume we get the out-of-memory error when morethan 4 GB of data is allocated to the Chrome Javascript objects.
 
-Before removing one layer, I wanted to know if the memory allocation was the same with layers full of tiles and layers empty (or with just one tile). So i removed all my copies of walls and I created one layer with one tile, that I copied several times. The result is that having many tiles drawn on a layer or not is not impacting the performance of the game. Only the number of layers counts, alongside the number of tiles of course.
+Before removing one layer, I wanted to know if the memory allocation was the same with layers full of tiles and layers empty (or with just one tile). So I removed all my copies of walls and I created one layer with one tile, that I copied several times. The result is that having many tiles drawn on a layer or not is not impacting the performance of the game. Only the number of layers counts, alongside the number of tiles of course.
 
 > It's the number of tiles that counts, not the number of pixels. So if we had a grid of 16x16 tiles we had double the size of our map.
 
