@@ -154,6 +154,13 @@ This is working with Chrome. With Firefox I had to remove some layers to make it
 
 I think that if we used a more opimized way of allocating the memory for each elements, we could have a way larger map.
 
+## Conclusion
+
+We have seen what were the limitations of each piece of software. At the end, we had a map too large to be able to create many layers, but 99.9% of the time you will never have to be careful about how many layers you create.
+That being said, I never had to create more than 25-30 layers to create my maps.
+
+Usually a "big map" in WorkAdventure is around 300x300 tiles. Maybe in the future people will have the need to create huge maps (with metaverses). We will then have to edit the game engine itself to be able to optimize it, or potentially we simply don't use 100% Phaser's capabilities. We will investigate this!
+
 ## Config
 
 Tested with this PC config:
