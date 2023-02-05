@@ -48,7 +48,7 @@ With 2k it makes already... 2,000 x 2,000 tiles = 4,000,000 tiles = 128,000,000 
 What I found impressive was how Tiled was rendering the painting of 4,000,000 tiles at once, quickly and without flinching! 
 Here is a little souvenir:
 
-![2k-map](./docs/2k-map.png)
+![2k-map](./public/2k-map.png)
 
 Ok, some stats before my commit/push:
 * Opening this file with Tiled will consume 7 GB of RAM
@@ -72,7 +72,7 @@ In conclusion, the file must be less than 100 MB. So the plan is to cut the map
 After 3-4 attempts, I arrived at a result of 1600x1600 tiles for a file that goes under the 100 MB mark (~ 90 MB).
 Before pushing one last time, I took the design of the [starter kit](https://github.com/thecodingmachine/workadventure-map-starter-kit) repo (it's a small office) which I duplicated over the entire width and height of the map. This small setup contains 2 Jitsi areas and enough furniture for my test.
 
-![adding-offices](./docs/adding-offices.gif)
+![adding-offices](./public/adding-offices.gif)
 
 Just to give you an idea here, this map contains about 47 of these small offices across the width and 88 across the height, making no less than 4,136 offices ready to kick in the doors of WorkAdventure!
 
@@ -86,7 +86,7 @@ Now what I want to do is to add this damn stat:
 
 So here we go: I pushed, the GitHub actions are now working, I waited a bit for GitHub Pages to be OK, I opened the deployments view, I clicedk on my [WorkAdventure link](https://play.workadventu.re/_/this-is/valdotr.github.io/largest-map-ever/map.json)! ... aaaand the winner is... SIGILL. Yep, that's his real name:
  
-![SIGILL](./docs/SIGILL.png)
+![SIGILL](./public/SIGILL.png)
 
 So now it's probably Phaser's turn to get in my way... the world is crap, really.
 
@@ -103,7 +103,7 @@ Let's analyze our map with 1200x1200 tiles:
 * It takes 3'33" for the player to travel the entire map horizontally
 * It takes 15 seconds to load the map in WorkAdventure
 
-![inside_wa](./docs/inside_wa.png)
+![inside_wa](./public/inside_wa.png)
 
 We are not finished yet. Now that the number of tiles is not an issue anymore, let's increase the number of layers!
 The current map has 12 layers.
@@ -112,7 +112,7 @@ The current map has 12 layers.
 
 I created a copy of one of my layers that I copied 82 times... to have my total of 100 layers.
 
-![copies](./docs/copies.png)
+![copies](./public/copies.png)
 
 When I saved Tiled was about to crash, I had to force wait for the program to save my work.
 I looked at the file size I saw 433 MB. Ok so already knew that I had to remove a bunch of layers to pass below 100 MB (LFS issue).
@@ -128,11 +128,11 @@ So I ran this map in WorkAdventure: still have the memory error code "SIGILL".
 
 Ok, this part is super interesting. I removed more copies of my walls until having a total of 14 layers (15 layers gave me the memory error crash).
 
-![3-copies](./docs/3-copies.png)
+![3-copies](./public/3-copies.png)
 
 With this quantity of memory to manage, Chrome stopped the execution of the Phaser code just before having to crash! Maybe he did that because I had the console open.
 
-![chrome-debug-phaser](./docs/chrome-debug-phaser.png)
+![chrome-debug-phaser](./public/chrome-debug-phaser.png)
 
 In the memory tab, I saw a heap snapshot of 3900 MB, so I assume we get the out-of-memory error when morethan 4 GB of data is allocated to the Chrome Javascript objects.
 
@@ -142,7 +142,7 @@ Before removing one layer, I wanted to know if the memory allocation was the sam
 
 Now I think we can see the size of a map this way, in a cuboid shape:
 
-![cuboid](./docs/cuboid.png)
+![cuboid](./public/cuboid.png)
 
 So to have an idea of the real number of tiles that Phaser must work with, we have to see them in 3D: `1200 x 1200 x 14 = 20,160,000` elements of 32x32 pixels.
 
